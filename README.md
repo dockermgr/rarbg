@@ -1,8 +1,10 @@
 ## 👋 Welcome to rarbg 🚀  
 
-rarbg README  
+A self-hosted Torznab API for the RARBG backup, compatible with Prowlarr, Radarr, Sonarr etc. 
   
+FROM: <https://github.com/mgdigital/rarbg-selfhosted>
   
+
 ## Install my system scripts  
 
 ```shell
@@ -30,7 +32,7 @@ docker run -d \
 -e TZ=${TIMEZONE:-America/New_York} \
 -v $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/data:/data:z \
 -v $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/config:/config:z \
--p 80:80 \
+-p 0.0.0.0:3333:3333 \
 casjaysdevdocker/rarbg:latest
 ```
   
@@ -49,7 +51,7 @@ services:
       - $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/data:/data:z
       - $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/config:/config:z
     ports:
-      - 80:80
+      - 0.0.0.0:3333:3333
     restart: always
 ```
   
