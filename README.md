@@ -21,17 +21,17 @@ dockermgr update rarbg
 ## Install and run container
   
 ```shell
-mkdir -p "$HOME/.local/share/srv/docker/rarbg/rootfs"
+mkdir -p "$HOME/.local/share/srv/docker/rarbg/volumes"
 git clone "https://github.com/dockermgr/rarbg" "$HOME/.local/share/CasjaysDev/dockermgr/rarbg"
-cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/rarbg/rootfs/." "$HOME/.local/share/srv/docker/rarbg/rootfs/"
+cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/rarbg/volumes/." "$HOME/.local/share/srv/docker/rarbg/volumes/"
 docker run -d \
 --restart always \
 --privileged \
 --name casjaysdevdocker-rarbg \
 --hostname rarbg \
 -e TZ=${TIMEZONE:-America/New_York} \
--v $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/data:/data:z \
--v $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/config:/config:z \
+-v $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/volumes/data:/data:z \
+-v $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/volumes/config:/config:z \
 -p 0.0.0.0:3333:3333 \
 casjaysdevdocker/rarbg:latest
 ```
@@ -48,8 +48,8 @@ services:
       - TZ=America/New_York
       - HOSTNAME=rarbg
     volumes:
-      - $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/data:/data:z
-      - $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/rootfs/config:/config:z
+      - $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/volumes/data:/data:z
+      - $HOME/.local/share/srv/docker/casjaysdevdocker-rarbg/volumes/config:/config:z
     ports:
       - 0.0.0.0:3333:3333
     restart: always
